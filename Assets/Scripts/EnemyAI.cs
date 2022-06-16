@@ -50,6 +50,7 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        transform.position = Vector3.Lerp(walkPoint, distanceToWalkPoint, walkPointRange);
 
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
