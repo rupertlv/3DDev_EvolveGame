@@ -13,6 +13,27 @@ public class CharacterStats : MonoBehaviour
     }
 
     void Update (){
+        
+        switch (points > 8 ? "Last":
+        points > 5 ? "Mid":
+        points > 2 ? "Low": "Default"){
+            case "Low":
+                transform.position = new Vector3 (transform.position.x,transform.position.y + 0.5f,transform.position.z);
+                transform.localScale = new Vector3 (1.5f,1.5f,1.5f);
+                break;
+            case "Mid":
+                transform.position = new Vector3 (transform.position.x,transform.position.y + 1f,transform.position.z);
+                transform.localScale = new Vector3 (2f,2f,2f);
+                break;
+            case "Last":
+                transform.position = new Vector3 (transform.position.x,transform.position.y + 1f,transform.position.z);
+                transform.localScale = new Vector3 (3f,3f,3f);
+                break;
+            default:
+                Debug.Log(transform.name + " can't transform yet");
+                break;
+        }
+
         if (Input.GetKeyDown(KeyCode.T)){
             TakeDamage(10);
         }
