@@ -5,20 +5,24 @@ public class CharacterStats : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth {get; private set;}
-    public Stat damage;
     public int points = 0;
-    public int speed = 20;
-
     void Awake(){
         currentHealth = maxHealth;
     }
-
     void Update (){
         if (Input.GetKeyDown(KeyCode.T)){
             TakeDamage(10);
         }
     }
-
+    public void Heal (int health){
+        if (currentHealth == maxHealth){
+            Debug.Log(transform.name + " can't heal right now");
+            currentHealth += 0;
+        } else{
+            currentHealth += health;
+            Debug.Log(transform.name + " heals for " + health);
+        }
+    }
     public void TakeDamage (int damage){
         currentHealth -= damage;
         Debug.Log(transform.name + " takes " + damage + " damage.");
@@ -38,6 +42,10 @@ public class CharacterStats : MonoBehaviour
         if(other.name == "Enemy")
         {
             TakeDamage(10);
+        }
+        if(other.name == "Pill")
+        {
+            Heal(5);
         }
     }
 }
